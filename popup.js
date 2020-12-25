@@ -1,11 +1,9 @@
 
-
 function refresh(){
-    document.querySelector("#aa4231").;
+    chrome.tabs.executeScript(null,{file:'content.js'});
 }
 
-
-document.addEventListener('DOMcontentloaded',function(){
+document.addEventListener('DOMContentLoaded',function(){
     var btn_start = document.querySelector('#btn_start');
-    btn_start.document.addEventListener('click',refresh);
+    btn_start.addEventListener('click',refresh);
 });
