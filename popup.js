@@ -1,23 +1,5 @@
 
 
-/*function refresh(){
-   new Promise((resolve, reject) => {
-       chrome.tabs.executeScript({file:"content.js"},function(href){
-            chrome.tabs.query({'active':true},function(tabs){
-                chrome.tabs.update(tabs[0].id,{url:href},function(){
-                    
-                });
-       });
-   })
-   .then(() => {
-
-        chrome.tabs.query({'active':true},function(tabs){
-            chrome.tabs.update(tabs[0].id,;
-       
-   })
-}
-*/
-
 function refresh() {
     chrome.tabs.executeScript({ file: "content.js" }, function (href) {
         chrome.tabs.query({ 'active': true, 'currentWindow': true }, function (tabs) {
@@ -39,12 +21,3 @@ document.addEventListener('DOMContentLoaded',function(){
     btn_start.addEventListener('click',refresh);
 });
 
-
-/*
-return new Promise((resolve, reject) => {
-    chrome.tabs.executeScript({file:'content.js'},function(){
-        alert('start');
-    });
-    resolve();
-});
-*/
