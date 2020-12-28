@@ -10,7 +10,6 @@ for(var i = 0; i<subjects.length; i++){
         href = "new_2018/qa_board/" + content.split('"')[1];
         href = href.split('amp;').join('');
         href = 'http://tzone.megastudy.net/' + href;
-        window.open(href,'_self');
         break;
     }
 }
