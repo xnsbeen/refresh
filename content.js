@@ -1,6 +1,6 @@
 
 var href = '';
-var threshold_index = 2218936; // 질문 번호 기준 설정
+var threshold_index = 2219790; // 질문 번호 기준 설정
 
 
 function getIndex(subject){
@@ -9,31 +9,25 @@ function getIndex(subject){
     return result;
 }
 
-var refresh = setInterval(function(){
+frame = document.getElementById("ifrmContents").contentWindow;
+subjects = frame.document.getElementsByClassName("subject");
+href = '';
 
-    frame = document.getElementById("ifrmContents").contentWindow;
-    subjects = frame.document.getElementsByClassName("subject");
-    href = '';
-    
-    for(var i = 0; i<subjects.length; i++){
-        
-        subject = subjects[i].innerHTML;
+for (var i = 0; i < subjects.length; i++) {
 
-        if(subject.includes('update')&&!subject.includes('답변 중 입니다.')){
-            
-            index_subject = getIndex(subject);
-            if(index_subject <= threshold_index ) break;
-            
-            href = "new_2018/qa_board/" + subject.split('"')[1];
-            href = href.split('amp;').join('');
-            href = 'http://tzone.megastudy.net/' + href;
-            alert(href);
-            clearInterval(refresh);
-            break;
+    subject = subjects[i].innerHTML;
 
-        }
+    if (subject.includes('update') && !subject.includes('답변 중 입니다.')) {
+
+        index_subject = getIndex(subject);
+        if (index_subject <= threshold_index) break;
+
+        href = "new_2018/qa_board/" + subject.split('"')[1];
+        href = href.split('amp;').join('');
+        href = 'http://tzone.megastudy.net/' + href;
+        break;
+
     }
-    document.querySelector('#aa4231').click();
-},4000);
+}
 
 href
