@@ -1,12 +1,11 @@
 
 var href = '';
-var threshold_index = 2217866; // 질문 번호 기준 설정
+var threshold_index = 2218936; // 질문 번호 기준 설정
 
 
 function getIndex(subject){
-    begin = subject.indexof('idx') + 4;
+    begin = subject.indexOf('idx') + 4;
     result = Number(subject.slice(begin, begin + 7));
-    alert(result);
     return result;
 }
 
@@ -16,24 +15,24 @@ var refresh = setInterval(function(){
     subjects = frame.document.getElementsByClassName("subject");
     href = '';
     
-
     for(var i = 0; i<subjects.length; i++){
-        sub = subjects[i];
-        content = subjects[i].innerHTML;
-        index_subject = getIndex(content);
         
-        //기준이 되는 질문 번호보다 작으면 최신문제가 아니다.
-        if(index_subject <= threshold_index ) break;
+        subject = subjects[i].innerHTML;
 
-        if(content.includes('update')&&!content.includes('답변 중 입니다.')){
-            href = "new_2018/qa_board/" + content.split('"')[1];
+        if(subject.includes('update')&&!subject.includes('답변 중 입니다.')){
+            
+            index_subject = getIndex(subject);
+            if(index_subject <= threshold_index ) break;
+            
+            href = "new_2018/qa_board/" + subject.split('"')[1];
             href = href.split('amp;').join('');
             href = 'http://tzone.megastudy.net/' + href;
+            alert(href);
             clearInterval(refresh);
             break;
+
         }
     }
-
     document.querySelector('#aa4231').click();
 },4000);
 
