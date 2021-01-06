@@ -1,17 +1,17 @@
 
 
-function execute() {
+const execute = () => {
     new Promise(function (resolve, reject) {
         var refresh = setInterval(function () {
             chrome.tabs.executeScript({ file: "content.js" }, function (href) {
+                alert(href+'11');
                 if(href!=''){ 
                     clearInterval(refresh);
                     resolve(href);
                 }
                 else{
-                    alert(document.querySelector('#aa4231'));
-                    //document.querySelector('#aa4231').click();
-                }
+                    alert('???');
+                    chrome.tabs.executeScript({ file: "test_click.js" });
             })
         },4000)
     })
@@ -31,9 +31,24 @@ function execute() {
 }
 
 function test() {
-    chrome.tabs.executeScript({ file: "test_script.js" }, function (href) {
-        alert('받은값 : ' + href);
+    //chrome.tabs.executeScript({ file: "test_click.js" });
+    
+    chrome.tabs.executeScript({ file: "test_check.js" },function(href){
+        alert(href)
+        if(href!=''){
+            alert(href);
+        }
     });
+    /*
+    var check = setInterval(function () {
+        chrome.tabs.executeScript({ file: "test_check.js" },function(href){
+            if(href!=''){
+                alert(href);
+                clearInterval(check);
+            }
+        });
+    }, 500);
+    */
 }
 
 document.addEventListener('DOMContentLoaded', function () {

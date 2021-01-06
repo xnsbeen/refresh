@@ -1,6 +1,6 @@
-
+alert('체크')
 var href = '';
-var threshold_index = 2235643; // 질문 번호 기준 설정
+var threshold_index = 2235577; // 질문 번호 기준 설정
 
 
 function getIndex(subject){
@@ -31,3 +31,4 @@ for (var i = 0; i < subjects.length; i++) {
 }
 
 href
+
